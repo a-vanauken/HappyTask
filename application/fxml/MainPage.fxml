@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane id="mainBorderPane" prefHeight="900" prefWidth="1200" xmlns:fx="http://javafx.com/fxml/1"
+    fx:controller="application.controllers.MainPageController">
+    <top>
+        <fx:include source="Header.fxml" fx:id="header" />
+    </top>
+    <left>
+        <!-- vbox -->
+    </left>
+    <center>
+        <!-- grid pane -->
+    </center>
+    <bottom>
+        <!-- footer -->
+    </bottom>
+</BorderPane>

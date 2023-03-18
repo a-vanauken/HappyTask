@@ -1,0 +1,16 @@
+
+
+#welcomeText, #welcomeUserText{
+    -fx-font-size: 24px; 
+    -fx-font-weight: bold;
+}
+
+#inputGrid {
+    -fx-padding: 100px;
+    -fx-border-insets: 100px;
+    -fx-background-insets: 100px;
+}
+
+#headerPane {
+    -fx-padding: 20px;
+}
