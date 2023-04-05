@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+<?import javafx.geometry.*?>
+
+
+
+<GridPane id="tasksPane" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.TasksPageController" gridLinesVisible="true"   >
+    <columnConstraints >
+        <ColumnConstraints fx:id="column" percentWidth="25" />
+        <ColumnConstraints fx:id="column" percentWidth="25"/>
+        <ColumnConstraints fx:id="column" percentWidth="25"/>
+        <ColumnConstraints fx:id="column" percentWidth="25"/>
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints fx:id="taskHeaderRow" maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="200.0" minHeight="100.0" prefHeight="100.0" vgrow="SOMETIMES"/>
+        <RowConstraints maxHeight="200.0" minHeight="100.0" prefHeight="100.0" vgrow="SOMETIMES"/>
+        <RowConstraints maxHeight="200.0" minHeight="100.0" prefHeight="100.0" vgrow="SOMETIMES"/>
+        <RowConstraints maxHeight="200.0" minHeight="100.0" prefHeight="100.0" vgrow="SOMETIMES"/>
+    </rowConstraints>
+    <children>
+        <StackPane fx:id="taskHeaderBackground" GridPane.rowIndex="0" GridPane.columnIndex="0" GridPane.columnSpan="4" />
+            <Label fx:id="todoLabel" id="taskColumnHeaderLabels" text="To Do" GridPane.rowIndex="0" GridPane.columnIndex="0" />
+            <Label fx:id="inprogressLabel" id="taskColumnHeaderLabels" text="In Progress" GridPane.rowIndex="0" GridPane.columnIndex="1" />
+            <Label fx:id="onholdLabel" id="taskColumnHeaderLabels" text="On Hold" GridPane.rowIndex="0" GridPane.columnIndex="2" />
+            <Label fx:id="doneLabel" id="taskColumnHeaderLabels" text="Done" GridPane.rowIndex="0" GridPane.columnIndex="3" />
+    </children>
+</GridPane>
+
+<!-- 
+<TextField fx:id="txtFirstName" GridPane.rowIndex="0" GridPane.columnIndex="1">
+    <GridPane.margin>
+        <Insets right="30"/>
+    </GridPane.margin> -->
+<!-- </TextField> -->

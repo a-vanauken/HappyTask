@@ -5,18 +5,27 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Text?>
+<?import javafx.geometry.*?>
 
-<BorderPane id="mainBorderPane" prefHeight="900" prefWidth="1200" xmlns:fx="http://javafx.com/fxml/1"
-    fx:controller="application.controllers.MainPageController">
+
+<BorderPane fx:id="mainBorderPane" prefHeight="900" prefWidth="1200" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.MainPageController">
     <top>
         <fx:include source="Header.fxml" fx:id="header" />
     </top>
     <left>
-        <!-- vbox -->
+        <VBox id="navigationPane" spacing="10" prefWidth="200">
+            <padding>
+                <Insets top="25" right="25" bottom="25" left="25"/>
+            </padding>
+            <Button fx:id="dashboardTab" id="navTab" text="Dashboard" />
+            <Button fx:id="tasksTab" id="navTab" text="Tasks" onAction="#handleShowTasksPage"/>
+            <Button fx:id="accountTab" id="navTab" text="Account" />
+        </VBox>
     </left>
     <center>
-        <!-- grid pane -->
+        <fx:include source="TasksPage.fxml" fx:id="tasksView" />
     </center>
+    
     <bottom>
         <!-- footer -->
     </bottom>

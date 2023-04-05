@@ -15,17 +15,11 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.scene.Node;
 
-
 public class LandingPageController implements Initializable {
 
     private Stage stage;
     private Scene scene;
     private Parent root;
-    
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        // TODO Auto-generated method stub
-    }
     
     @FXML
     private Text welcomeText;
@@ -34,13 +28,13 @@ public class LandingPageController implements Initializable {
     private Label usernameLabel;
 
     @FXML
-    private TextField usernameTextField;
+    private TextField usernameField;
 
     @FXML
     private Label passwordLabel;
 
     @FXML
-    private TextField passwordTextField;
+    private TextField passwordField;
 
     @FXML
     private Button loginButton;
@@ -48,16 +42,19 @@ public class LandingPageController implements Initializable {
     @FXML
     private Button signupButton;
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        // TODO Auto-generated method stub
+    }
+    
     @FXML
     public void handleLoginButtonAction (ActionEvent event) throws Exception {
         root = FXMLLoader.load(getClass().getResource("/application/fxml/MainPage.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
+        scene = new Scene(root, 1800, 850);
         scene.getStylesheets().add(getClass().getResource("/application/css/styles.css").toExternalForm());
         stage.setScene(scene);
+        stage.setMaximized(true);
         stage.show();
-
-       
     }
-    
 }

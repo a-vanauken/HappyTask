@@ -6,12 +6,12 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Text?>
 
-<GridPane id="headerPane" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.HeaderController" gridLinesVisible="true" hgap="10">
-    <columnConstraints>
+<GridPane id="headerPane" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.HeaderController" gridLinesVisible="true"  >
+    <columnConstraints >
         <ColumnConstraints fx:id="col1" percentWidth="25" />
         <ColumnConstraints percentWidth="25"/>
         <ColumnConstraints percentWidth="25"/>
-        <ColumnConstraints percentWidth="25" halignment="RIGHT"/>
+        <ColumnConstraints percentWidth="25" />
     </columnConstraints>
     <rowConstraints>
         <RowConstraints maxHeight="200.0" minHeight="100.0" prefHeight="100.0" vgrow="SOMETIMES" />
@@ -19,7 +19,7 @@
     </rowConstraints>
     <children>
         <Text fx:id="welcomeUserText" text="Welcome, Abby" GridPane.rowIndex="0" GridPane.columnIndex="0" GridPane.columnSpan="2"/>
-        <Button fx:id="logoutButton" text="Log Out" GridPane.rowIndex="0" GridPane.columnIndex="3" onAction="#switchToLandingPage" alignment="top_right"/>
+        <Button fx:id="logoutButton" text="Log Out" GridPane.rowIndex="0" GridPane.columnIndex="3" onAction="#switchToLandingPage" />
         <Text fx:id="dateText" text="Current time" GridPane.rowIndex="1" GridPane.columnIndex="3" />
     </children>
 </GridPane>

@@ -13,25 +13,24 @@ import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import javafx.scene.Node;
 
-
 public class HeaderController implements Initializable{
 
     private Stage stage;
     private Scene scene;
     private Parent root;
 
+    @FXML
+    private Text welcomeUserText;
+
+    @FXML 
+    private Button logoutButton;
+
+    @FXML 
+    private Text dateText;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
     }
-
-    @FXML
-    Text welcomeUserText;
-
-    @FXML 
-    Button logoutButton;
-
-    @FXML 
-    Text dateText;
 
     @FXML
     public void switchToLandingPage(ActionEvent event) throws Exception {
