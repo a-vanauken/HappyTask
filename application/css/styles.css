@@ -17,14 +17,7 @@
     -fx-background-insets: 100px;
 }
 
-#headerPane {
-    -fx-padding: 20px;
-    -fx-background-color: lightblue;
-
-}
-
-#navigationPane {
-    -fx-padding: 20px;
+#headerPane, #rightPane, #navigationPane  {
     -fx-background-color: lightblue;
 
 }
@@ -34,10 +27,6 @@
     -fx-outline-color: black;
     -fx-background-color: transparent;
     -fx-font-size: 18px; 
-}
-
-#logoutButton {
-
 }
 
 #tasksPane {
@@ -53,12 +42,9 @@
 }
 
 #taskColumnHeaderLabels {
-    -fx-padding: 100px;
-    -fx-margin:50px;
+    -fx-padding: 20px;
     -fx-font-size: 16px; 
-    -fx-text-fill: white;
-    
-    
+    -fx-text-fill: white;   
 }
 
 

@@ -7,11 +7,13 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.geometry.*?>
 
-
 <BorderPane fx:id="mainBorderPane" prefHeight="900" prefWidth="1200" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.MainPageController">
     <top>
         <fx:include source="Header.fxml" fx:id="header" />
     </top>
+    <right>
+        <Pane fx:id="rightPane" prefWidth="100" />
+    </right>
     <left>
         <VBox id="navigationPane" spacing="10" prefWidth="200">
             <padding>
@@ -25,7 +27,6 @@
     <center>
         <fx:include source="TasksPage.fxml" fx:id="tasksView" />
     </center>
-    
     <bottom>
         <!-- footer -->
     </bottom>
