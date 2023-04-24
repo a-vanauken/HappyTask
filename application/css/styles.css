@@ -17,9 +17,13 @@
     -fx-background-insets: 100px;
 }
 
-#headerPane, #rightPane, #navigationPane  {
-    -fx-background-color: lightblue;
+#headerPane, #landingPageWindow {
+    -fx-background-color: #FFD124;
 
+}
+
+#rightPane, #navigationPane, #bottomPane, #tasksPane  {
+    -fx-background-color: white;
 }
 
 #navTab {
@@ -31,14 +35,15 @@
 
 #tasksPane {
     -fx-padding-right: 20px;
-    -fx-background-color: lightgray;
-    
+    -fx-background-color: EEEEEE;
+    -fx-border-radius: 5px;   
 }
 
-#taskHeaderBackground {
+#taskHeaderRow {
     -fx-background-color: gray;
     -fx-border-style: solid;
-    -fx-border-color: black;
+    -fx-border-color: dimgray;
+    -fx-border-width: 3px;
 }
 
 #taskColumnHeaderLabels {
@@ -47,4 +52,10 @@
     -fx-text-fill: white;   
 }
 
+#taskNodeContainer {
+    -fx-background-color: dimgray;
+    -fx-border-radius: 10px; 
+    -fx-padding: 10px;
+    -fx-text-fill: white;   
+}
 

@@ -28,6 +28,6 @@
         <fx:include source="TasksPage.fxml" fx:id="tasksView" />
     </center>
     <bottom>
-        <!-- footer -->
+        <Pane fx:id="bottomPane" prefHeight="100" />
     </bottom>
 </BorderPane>

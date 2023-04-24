@@ -36,6 +36,7 @@
                 <Insets bottom="100.0" left="25.0" right="125.0" top="100.0" />
             </GridPane.margin>
         </Text>
+        <Pane fx:id="bottomPane" prefHeight="40" GridPane.rowIndex="2" GridPane.columnIndex="0" GridPane.columnSpan="4"/>
     </children>
 </GridPane>
 

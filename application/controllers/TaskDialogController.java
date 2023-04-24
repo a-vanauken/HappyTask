@@ -1,15 +1,13 @@
 package application.controllers;
-import java.io.IOException;
-import java.util.Objects;
 
 import application.models.Task;
+import java.io.IOException;
+import java.util.Objects;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.Modality;
 import javafx.stage.Window;
 import javafx.application.Platform;
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleObjectProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 
@@ -61,8 +59,6 @@ public class TaskDialogController extends Dialog<Task> {
     @FXML
     ButtonType okButtonType;
 
-    private ObjectProperty<Task> newTask = new SimpleObjectProperty<>(null);
-
 
     public TaskDialogController(Window owner) {
         try {
@@ -71,7 +67,6 @@ public class TaskDialogController extends Dialog<Task> {
             loader.setController(this);
             DialogPane dialogPane = loader.load();
             dialogPane.setContent(container);
-            //dialogPane.lookupButton(okButtonType).addEventFilter(ActionEvent.ANY, this::handleOnOK);
 
             initOwner(owner);
             initModality(Modality.APPLICATION_MODAL);
