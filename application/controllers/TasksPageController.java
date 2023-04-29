@@ -1,5 +1,6 @@
 package application.controllers;
 
+import application.Main;
 import application.models.Task;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -54,12 +55,13 @@ public class TasksPageController implements Initializable{
     private Node createTaskNode(Task task) {
         Label titleLabel = new Label(task.getTitle());
         Label descriptionLabel = new Label(task.getDescription());
-        Label dueDateLabel = new Label(task.getDueDate());
+        Label dueDateLabel = new Label("Due date: " + task.getDueDate());
         titleLabel.setTextFill(Color.web("white"));
         dueDateLabel.setTextFill(Color.web("white"));
         descriptionLabel.setTextFill(Color.web("white"));
 
         VBox taskNode = new VBox();
+        taskNode.setSpacing(5);
         taskNode.getChildren().addAll(titleLabel, descriptionLabel, dueDateLabel);
         taskNode.setId("taskNodeContainer");
         GridPane.setMargin(taskNode, new Insets(10, 5, 10, 5));

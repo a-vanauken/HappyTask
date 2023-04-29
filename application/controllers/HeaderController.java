@@ -1,6 +1,11 @@
 package application.controllers;
 
 import java.net.URL;
+import java.time.LocalDate;
+import java.util.Arrays;
+import java.util.Calendar;
+import static java.util.Calendar.DAY_OF_WEEK;  
+import java.util.Locale;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -30,6 +35,12 @@ public class HeaderController implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        //Calendar calendar = Calendar.getInstance(Locale.US);  
+        String dayOfWeek = formatDate(LocalDate.now().getDayOfWeek().name());
+        String month = formatDate(LocalDate.now().getMonth().name());
+        int day = LocalDate.now().getDayOfMonth();
+        int year = LocalDate.now().getYear();
+        dateText.setText(dayOfWeek + ", " + month + " " +  day + " " + year);
     }
 
     @FXML
@@ -41,5 +52,10 @@ public class HeaderController implements Initializable{
         scene.getStylesheets().add(getClass().getResource("/application/css/styles.css").toExternalForm());
         stage.setScene(scene);
         stage.show();
+    }
+
+    private String formatDate(String text) {
+        String formattedString = text.substring(0, 1) + text.substring(1, text.length()).toLowerCase();
+        return formattedString;
     }
 }

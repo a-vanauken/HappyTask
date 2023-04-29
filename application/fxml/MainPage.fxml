@@ -19,9 +19,9 @@
             <padding>
                 <Insets top="25" right="25" bottom="25" left="25"/>
             </padding>
-            <Button fx:id="dashboardTab" id="navTab" text="Dashboard" />
-            <Button fx:id="tasksTab" id="navTab" text="Tasks" onAction="#handleShowTasksPage"/>
-            <Button fx:id="accountTab" id="navTab" text="Account" />
+            <Button fx:id="dashboardTab" id="navTab" text="Dashboard"  alignment="BOTTOM_LEFT"/>
+            <Button fx:id="tasksTab" id="navTab" text="Tasks" onAction="#handleShowTasksPage" prefWidth="200"  alignment="BOTTOM_LEFT"/>
+            <Button fx:id="accountTab" id="navTab" text="Account"  alignment="BOTTOM_LEFT"/>
         </VBox>
     </left>
     <center>

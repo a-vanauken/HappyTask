@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javax.xml.transform.Source;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -54,6 +56,7 @@ public class MainPageController implements Initializable{
     private void handleShowTasksPage(ActionEvent event) {
         loadFXML(getClass().getResource("/application/fxml/TasksPage.fxml"));
         mainBorderPane.getStylesheets().add(getClass().getResource("/application/css/styles.css").toExternalForm());
+        tasksTab.setStyle("-fx-background-color: #EEEEEE; "); 
     }
 
     private void loadFXML(URL url) {

@@ -1,13 +1,17 @@
 package application.controllers;
 
 import application.models.Task;
+
+import java.beans.EventHandler;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.Objects;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.Modality;
 import javafx.stage.Window;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 
@@ -40,9 +44,9 @@ public class TaskDialogController extends Dialog<Task> {
     
     @FXML
     Label dateLabel;
-    
+
     @FXML
-    TextField dateField;
+    DatePicker datePicker;
     
     @FXML
     Button saveButton;
@@ -78,13 +82,16 @@ public class TaskDialogController extends Dialog<Task> {
                 if(!Objects.equals(ButtonBar.ButtonData.OK_DONE, buttonType.getButtonData())) {
                     return null;
                 }
-                return new Task(titleField.getText(), descriptionArea.getText(), (String)pathOptions.getSelectionModel().getSelectedItem(), dateField.getText());
+                String date = "" + datePicker.getValue();
+                return new Task(titleField.getText(), descriptionArea.getText(), (String)pathOptions.getSelectionModel().getSelectedItem(), date);
             });
 
             setOnShowing(dialogEvent -> Platform.runLater(() -> titleField.requestFocus()));
 
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
-    }
-}    
+        
+    };
+    
