@@ -8,11 +8,11 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.scene.Node;
 
@@ -55,17 +55,22 @@ public class TasksPageController implements Initializable{
     }
 
     private Node createTaskNode(Task task) {
-        Label titleLabel = new Label(task.getTitle());
-        Label descriptionLabel = new Label(task.getDescription());
-        Label dueDateLabel = new Label("Due date: " + task.getDueDate());
-        titleLabel.setTextFill(Color.web("white"));
-        dueDateLabel.setTextFill(Color.web("white"));
-        descriptionLabel.setTextFill(Color.web("white"));
 
-        VBox taskNode = new VBox();
-        taskNode.setSpacing(5);
-        taskNode.getChildren().addAll(titleLabel, descriptionLabel, dueDateLabel);
-        taskNode.setId("taskNodeContainer");
+        GridPane taskNode = new GridPane();
+        
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/fxml/TaskNode.fxml"));
+            taskNode = loader.load();
+            TaskNodeController controller = loader.getController();
+
+            controller.setTitle(task.getTitle());
+            controller.setDescription(task.getDescription());
+            controller.setDueDate(task.getDueDate());
+
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
+        
         GridPane.setMargin(taskNode, new Insets(10, 5, 10, 5));
         return taskNode;
     }
@@ -92,7 +97,7 @@ public class TasksPageController implements Initializable{
         gridPane.add(taskNode, 0, emptyCell);
     }
     
-    public boolean findEmptyCell(GridPane gridPane, int rowToCheck) {
+    private boolean findEmptyCell(GridPane gridPane, int rowToCheck) {
 
         int column = 0; //this is the To Do column
 
@@ -106,7 +111,7 @@ public class TasksPageController implements Initializable{
     }  
 
     
-    public void writeTaskToFile(Task newTask) {
+    private void writeTaskToFile(Task newTask) {
 
         try {
             final CSVReadWrite writer = new CSVReadWrite();
@@ -117,7 +122,7 @@ public class TasksPageController implements Initializable{
     }
 
 
-    public void showTaskFromFile(Task task) {
+    private void showTaskFromFile(Task task) {
         Node taskNode = createTaskNode(task);
         addTaskToGrid(tasksPane, taskNode);
     }

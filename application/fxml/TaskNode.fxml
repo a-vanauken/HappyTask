@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+<?import javafx.geometry.*?>
+
+<GridPane fx:id="taskNode" id="taskNodeContainer" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.TaskNodeController">
+    <columnConstraints >
+        <ColumnConstraints fx:id="column" percentWidth="33" />
+        <ColumnConstraints fx:id="column" percentWidth="33"/>
+        <ColumnConstraints fx:id="column" percentWidth="33"/>
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints prefHeight="10.0" vgrow="SOMETIMES"/>
+        <RowConstraints prefHeight="10.0" vgrow="SOMETIMES"/>
+        <RowConstraints prefHeight="50.0" vgrow="SOMETIMES"/>
+        <RowConstraints prefHeight="10.0" vgrow="SOMETIMES"/>
+    </rowConstraints>
+    <children>
+        <Button fx:id="optionsButton" text="..." GridPane.rowIndex="0" GridPane.columnIndex="2" GridPane.halignment="RIGHT" >
+            <GridPane.margin>
+                <Insets top="10.0"/>
+            </GridPane.margin>
+        </Button>
+        <Label fx:id="titleLabel" id="taskNodeText" text="blank" GridPane.rowIndex="1" GridPane.columnIndex="0" />
+        <Label fx:id="descriptionLabel" id="taskNodeText" text="blank" GridPane.rowIndex="2" GridPane.columnIndex="0" />
+        <Label fx:id="dueDateLabel" id="taskNodeText" text="Due: " GridPane.rowIndex="4" GridPane.columnIndex="0" />
+    </children>
+</GridPane>
+        
+
+
+

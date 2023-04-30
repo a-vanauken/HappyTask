@@ -56,6 +56,11 @@
     -fx-background-color: dimgray;
     -fx-border-radius: 10px; 
     -fx-padding: 10px;
-    -fx-text-fill: white;   
+}
+
+#taskNodeText {
+    -fx-text-fill: white; 
+    -fx-font-size: 14px; 
+    -fx-font-family: Helvetica;
 }
 

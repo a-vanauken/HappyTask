@@ -2,6 +2,8 @@ package application.controllers;
 
 import application.models.Task;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
@@ -78,8 +80,7 @@ public class TaskDialogController extends Dialog<Task> {
                 if(!Objects.equals(ButtonBar.ButtonData.OK_DONE, buttonType.getButtonData())) {
                     return null;
                 }
-                String date = "" + datePicker.getValue();
-                return new Task(titleField.getText(), descriptionArea.getText(), (String)pathOptions.getSelectionModel().getSelectedItem(), date);
+                return new Task(titleField.getText(), descriptionArea.getText(), (String)pathOptions.getSelectionModel().getSelectedItem(), formatDate(datePicker.getValue()));
             });
 
             setOnShowing(dialogEvent -> Platform.runLater(() -> titleField.requestFocus()));
@@ -88,6 +89,17 @@ public class TaskDialogController extends Dialog<Task> {
                 throw new RuntimeException(e);
             }
         }
-        
+
+        private String formatDate(LocalDate date) {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+
+            String formattedDate;
+            if (date != null) {
+                formattedDate = formatter.format(date);
+            } else {
+                formattedDate = "N/A";
+            }
+            return formattedDate;
+        }
     };
     
