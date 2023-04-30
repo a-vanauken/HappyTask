@@ -1,6 +1,8 @@
 package application.models;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -39,6 +41,24 @@ public class CSVReadWrite {
         }
         this.csvWriter.append("\n");
         this.csvWriter.close();
+    }
+
+    public String[][] readFromCSV() throws IOException {
+        BufferedReader csvReader = new BufferedReader(new FileReader(this.csvFile));
+        String row;
+        String[][] data = new String[3][10];
+        int i = 0;
+
+        while ((row = csvReader.readLine()) != null) {
+            String[] line = row.split(",");
+            for (int j = 0; j < line.length; j++) {
+                String removedQuotes = line[j].substring(1, line[j].length() - 1);
+                data[i][j] = removedQuotes;
+            }
+            i++;
+        }
+        csvReader.close();
+        return data;
     }
 }
 

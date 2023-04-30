@@ -105,6 +105,7 @@ public class TasksPageController implements Initializable{
         return true;
     }  
 
+    
     public void writeTaskToFile(Task newTask) {
 
         try {
@@ -115,8 +116,33 @@ public class TasksPageController implements Initializable{
         }
     }
 
+
+    public void showTaskFromFile(Task task) {
+        Node taskNode = createTaskNode(task);
+        addTaskToGrid(tasksPane, taskNode);
+    }
+
+    private void loadData() {
+        String[][] data = new String[4][10];
+        
+        try {
+            CSVReadWrite writer = new CSVReadWrite();
+            data = writer.readFromCSV();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        for(int i = 0; i < data.length; i++) {
+            int j = 0;
+
+            if(data[i][j] != null) {
+                showTaskFromFile(new Task(data[i][j], data[i][j+1], null, data[i][j+2]));
+            }
+        }
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        
+        loadData();
     }
 }
