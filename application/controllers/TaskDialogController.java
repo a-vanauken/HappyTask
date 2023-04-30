@@ -1,17 +1,13 @@
 package application.controllers;
 
 import application.models.Task;
-
-import java.beans.EventHandler;
 import java.io.IOException;
-import java.time.LocalDate;
 import java.util.Objects;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.Modality;
 import javafx.stage.Window;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 

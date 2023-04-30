@@ -1,7 +1,9 @@
 package application.controllers;
 
-import application.Main;
+import application.models.CSVReadWrite;
 import application.models.Task;
+
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -48,7 +50,7 @@ public class TasksPageController implements Initializable{
 
             Node taskNode = createTaskNode(task);
             addTaskToGrid(tasksPane, taskNode);
-        
+            writeTaskToFile(task);
         });
     }
 
@@ -103,8 +105,18 @@ public class TasksPageController implements Initializable{
         return true;
     }  
 
+    public void writeTaskToFile(Task newTask) {
+
+        try {
+            final CSVReadWrite writer = new CSVReadWrite();
+            writer.writeToCSV(newTask);
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        
     }
 }

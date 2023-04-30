@@ -2,10 +2,6 @@ package application.controllers;
 
 import java.net.URL;
 import java.time.LocalDate;
-import java.util.Arrays;
-import java.util.Calendar;
-import static java.util.Calendar.DAY_OF_WEEK;  
-import java.util.Locale;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -35,7 +31,6 @@ public class HeaderController implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        //Calendar calendar = Calendar.getInstance(Locale.US);  
         String dayOfWeek = formatDate(LocalDate.now().getDayOfWeek().name());
         String month = formatDate(LocalDate.now().getMonth().name());
         int day = LocalDate.now().getDayOfMonth();
