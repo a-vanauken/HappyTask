@@ -4,13 +4,13 @@ public class Task {
 
     private String title;
     private String description;
-    private String areaPath;
+    //private String areaPath;
     private String dueDate;
 
-    public Task(String title, String description, String areaPath, String dueDate) {
+    public Task(String title, String description, String dueDate) {
         setTitle(title);
         setDescription(description);
-        setAreaPath(areaPath);
+        //setAreaPath(areaPath);
         setDueDate(dueDate);
     }
 
@@ -22,9 +22,9 @@ public class Task {
         this.description = description;
     }
 
-    public void setAreaPath(String areaPath) {
-        this.areaPath = areaPath;
-    }
+    // public void setAreaPath(String areaPath) {
+    //     this.areaPath = areaPath;
+    // }
 
     public void setDueDate(String dueDate) {
         this.dueDate = dueDate;
@@ -38,9 +38,9 @@ public class Task {
         return this.description;
     }
 
-    public String getAreaPath() {
-        return this.areaPath;
-    }
+    // public String getAreaPath() {
+    //     return this.areaPath;
+    // }
 
     public String getDueDate() {
         return this.dueDate;

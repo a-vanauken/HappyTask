@@ -80,26 +80,50 @@ public class TaskDialogController extends Dialog<Task> {
                 if(!Objects.equals(ButtonBar.ButtonData.OK_DONE, buttonType.getButtonData())) {
                     return null;
                 }
-                return new Task(titleField.getText(), descriptionArea.getText(), (String)pathOptions.getSelectionModel().getSelectedItem(), formatDate(datePicker.getValue()));
+                //(String)pathOptions.getSelectionModel().getSelectedItem() > for areapath when it gets added
+                return new Task(titleField.getText(), descriptionArea.getText(), formatDate(datePicker.getValue()));
             });
 
             setOnShowing(dialogEvent -> Platform.runLater(() -> titleField.requestFocus()));
 
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
+    }
 
-        private String formatDate(LocalDate date) {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
-
-            String formattedDate;
-            if (date != null) {
-                formattedDate = formatter.format(date);
-            } else {
-                formattedDate = "N/A";
-            }
-            return formattedDate;
+    private String formatDate(LocalDate date) {
+        //  2023-01-01 - > 01/01/2023 
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+        String formattedDate;
+        if (date != null) {
+            formattedDate = formatter.format(date);
+        } else {
+            formattedDate = "N/A";
         }
-    };
+        return formattedDate;
+    }
+
+    private LocalDate unformatDate(String date) {
+        //  01/01/2023 -> 2023-01-01
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+        LocalDate localDate = LocalDate.parse(date, formatter);
+        formatter.format(localDate);
+        
+        return localDate;
+    }
+
+
+    public void setTitleField(String title) {
+        this.titleField.setText(title);
+    }
+
+    public void setDescriptionArea(String description) {
+        this.descriptionArea.setText(description);
+    }
+
+    public void setDueDate(String dueDate) {
+        this.datePicker.setValue(unformatDate(dueDate));
+    }
+
+}
     

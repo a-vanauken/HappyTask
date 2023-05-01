@@ -20,14 +20,14 @@
         <RowConstraints prefHeight="10.0" vgrow="SOMETIMES"/>
     </rowConstraints>
     <children>
-        <Button fx:id="optionsButton" text="..." GridPane.rowIndex="0" GridPane.columnIndex="2" GridPane.halignment="RIGHT" >
+        <Button fx:id="optionsButton" text="..." GridPane.rowIndex="0" GridPane.columnIndex="2" GridPane.halignment="RIGHT" onAction="#editTask">
             <GridPane.margin>
                 <Insets top="10.0"/>
             </GridPane.margin>
         </Button>
-        <Label fx:id="titleLabel" id="taskNodeText" text="blank" GridPane.rowIndex="1" GridPane.columnIndex="0" />
-        <Label fx:id="descriptionLabel" id="taskNodeText" text="blank" GridPane.rowIndex="2" GridPane.columnIndex="0" />
-        <Label fx:id="dueDateLabel" id="taskNodeText" text="Due: " GridPane.rowIndex="4" GridPane.columnIndex="0" />
+        <Label fx:id="titleLabel" id="taskNodeText" text="" GridPane.rowIndex="1" GridPane.columnIndex="0" />
+        <Label fx:id="descriptionLabel" id="taskNodeText" text="" GridPane.rowIndex="2" GridPane.columnIndex="0" />
+        <Label fx:id="dueDateLabel" id="taskNodeText" text="" GridPane.rowIndex="4" GridPane.columnIndex="0" />
     </children>
 </GridPane>
         

@@ -51,6 +51,7 @@ public class TasksPageController implements Initializable{
             Node taskNode = createTaskNode(task);
             addTaskToGrid(tasksPane, taskNode);
             writeTaskToFile(task);
+
         });
     }
 
@@ -116,6 +117,7 @@ public class TasksPageController implements Initializable{
         try {
             final CSVReadWrite writer = new CSVReadWrite();
             writer.writeToCSV(newTask);
+            writer.cleanUp();
         } catch (IOException e){
             e.printStackTrace();
         }
@@ -141,7 +143,7 @@ public class TasksPageController implements Initializable{
             int j = 0;
 
             if(data[i][j] != null) {
-                showTaskFromFile(new Task(data[i][j], data[i][j+1], null, data[i][j+2]));
+                showTaskFromFile(new Task(data[i][j], data[i][j+1], data[i][j+2]));
             }
         }
     }
