@@ -11,7 +11,8 @@
     <columnConstraints >
         <ColumnConstraints fx:id="column" percentWidth="33" />
         <ColumnConstraints fx:id="column" percentWidth="33"/>
-        <ColumnConstraints fx:id="column" percentWidth="33"/>
+        <ColumnConstraints fx:id="column" percentWidth="23"/>
+        <ColumnConstraints fx:id="column" percentWidth="10"/>
     </columnConstraints>
     <rowConstraints>
         <RowConstraints prefHeight="10.0" vgrow="SOMETIMES"/>
@@ -21,6 +22,11 @@
     </rowConstraints>
     <children>
         <Button fx:id="optionsButton" text="..." GridPane.rowIndex="0" GridPane.columnIndex="2" GridPane.halignment="RIGHT" onAction="#editTask">
+            <GridPane.margin>
+                <Insets top="10.0"/>
+            </GridPane.margin>
+        </Button>
+        <Button fx:id="deleteButton" text="X" GridPane.rowIndex="0" GridPane.columnIndex="3" GridPane.halignment="RIGHT" onAction="#deleteTask">
             <GridPane.margin>
                 <Insets top="10.0"/>
             </GridPane.margin>

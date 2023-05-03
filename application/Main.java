@@ -13,6 +13,10 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
+        
+        
+
+
         try {
             //Need to set scene to landing page by default
             Parent root = FXMLLoader.load(getClass().getResource("fxml/LandingPage.fxml"));
@@ -22,6 +26,8 @@ public class Main extends Application {
             primaryStage.setScene(scene);
             primaryStage.setTitle("HappyTask");
             primaryStage.show();
+
+            
             
         } catch (Exception e) {
             e.printStackTrace();
@@ -32,3 +38,6 @@ public class Main extends Application {
         launch(args);
     }
 }
+
+
+

@@ -1,7 +1,8 @@
 package application.controllers;
 
-import application.models.CSVReadWrite;
-import application.models.Task;
+import application.Task;
+import application.Task.*;
+import application.TaskManager;
 
 import java.io.IOException;
 import java.net.URL;
@@ -15,6 +16,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.scene.Node;
+
 
 public class TasksPageController implements Initializable{
 
@@ -41,17 +43,19 @@ public class TasksPageController implements Initializable{
 
     private Stage stage;
 
+    public String nodeColumn;
+
     @FXML
     private void addNewTask(ActionEvent event) throws Exception{
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         TaskDialogController dialog = new TaskDialogController(stage);
+        dialog.editing = false;
 
         dialog.showAndWait().ifPresent(task -> {
 
             Node taskNode = createTaskNode(task);
-            addTaskToGrid(tasksPane, taskNode);
-            writeTaskToFile(task);
-
+            Column currentColumn = task.getColumn();
+            addTaskToGrid(taskNode, currentColumn, currentColumn);
         });
     }
 
@@ -63,7 +67,8 @@ public class TasksPageController implements Initializable{
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/fxml/TaskNode.fxml"));
             taskNode = loader.load();
             TaskNodeController controller = loader.getController();
-
+            controller.parent = this;
+            controller.TaskId = task.id;
             controller.setTitle(task.getTitle());
             controller.setDescription(task.getDescription());
             controller.setDueDate(task.getDueDate());
@@ -76,17 +81,18 @@ public class TasksPageController implements Initializable{
         return taskNode;
     }
 
-    private void addTaskToGrid(GridPane gridPane, Node taskNode) {
+    public void addTaskToGrid(Node taskNode, Column currentColumn, Column desiredColumn) {
         int startingRow = 2;
-        int maxRows = gridPane.getRowConstraints().size();
+        int columnToPlace = getColumnIndex(desiredColumn);
+        int maxRows = tasksPane.getRowConstraints().size();
         int emptyCell = -1;
         boolean empty = false;
-        
-        //Check each row in the To Do column to find an empty cell 
+
+        //Check each row in the specified column to find an empty cell 
         while(!empty) {
             for(int i = startingRow; i < maxRows; i++) {
 
-                empty = findEmptyCell(gridPane, i);
+                empty = findEmptyCell(tasksPane, i, columnToPlace);
 
                 if(empty) {
                     emptyCell = i;
@@ -95,61 +101,56 @@ public class TasksPageController implements Initializable{
             }
         }     
 
-        gridPane.add(taskNode, 0, emptyCell);
+        //If we are moving to a different column, first remove it from its current one
+        if(getColumnIndex(currentColumn) != columnToPlace) {
+            removeTaskFromGrid(taskNode);
+        }
+
+        //Then place in new column
+        tasksPane.add(taskNode, columnToPlace, emptyCell);
+    }
+
+    public void removeTaskFromGrid(Node taskNode) {
+        tasksPane.getChildren().remove(taskNode);
+    }
+
+    private int getColumnIndex(Column column) {
+        if(column == Column.TODO) { 
+            return 0;
+        } else if(column == Column.IN_PROGRESS) {
+            return 1;
+        } else if(column == Column.ON_HOLD) {
+            return 2;
+        } else if(column == Column.DONE) {
+            return 3;
+        } else {
+            return -1;
+        }
     }
     
-    private boolean findEmptyCell(GridPane gridPane, int rowToCheck) {
-
-        int column = 0; //this is the To Do column
+    private boolean findEmptyCell(GridPane gridPane, int rowToCheck, int columnToCheck) {
+        /* Columns:
+        0 = Todo
+        1 = In progress
+        2 = On hold
+        3 = Done */
 
         for (Node node : gridPane.getChildren()) {
             
-            if (GridPane.getColumnIndex(node) == column && GridPane.getRowIndex(node) == rowToCheck) {
+            if (GridPane.getColumnIndex(node) == columnToCheck && GridPane.getRowIndex(node) == rowToCheck) {
                 return false;
             } 
         }
         return true;
     }  
 
-    
-    private void writeTaskToFile(Task newTask) {
-
-        try {
-            final CSVReadWrite writer = new CSVReadWrite();
-            writer.writeToCSV(newTask);
-            writer.cleanUp();
-        } catch (IOException e){
-            e.printStackTrace();
-        }
-    }
-
-
-    private void showTaskFromFile(Task task) {
-        Node taskNode = createTaskNode(task);
-        addTaskToGrid(tasksPane, taskNode);
-    }
-
-    private void loadData() {
-        String[][] data = new String[4][10];
-        
-        try {
-            CSVReadWrite writer = new CSVReadWrite();
-            data = writer.readFromCSV();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        for(int i = 0; i < data.length; i++) {
-            int j = 0;
-
-            if(data[i][j] != null) {
-                showTaskFromFile(new Task(data[i][j], data[i][j+1], data[i][j+2]));
-            }
-        }
-    }
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        loadData();
+        TaskManager.init();
+
+        for(int i = 0; i < TaskManager.GetNumberOfTasks(); i++) {
+            Node taskNode = createTaskNode(TaskManager.GetTaskAtIndex(i));
+            addTaskToGrid(taskNode, TaskManager.GetTaskAtIndex(i).getColumn(), TaskManager.GetTaskAtIndex(i).getColumn());
+        }  
     }
 }

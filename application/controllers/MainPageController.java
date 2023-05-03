@@ -24,7 +24,7 @@ public class MainPageController implements Initializable{
     @FXML
     private Button dashboardTab;
 
-    @FXML
+    @FXML 
     private Button tasksTab;
 
     @FXML
@@ -40,7 +40,6 @@ public class MainPageController implements Initializable{
     @FXML
     public void switchToLandingPage(ActionEvent event) throws Exception {
         root = FXMLLoader.load(getClass().getResource("/application/fxml/LandingPage.fxml"));
-        //stage = (Stage) button.getScene().getWindow(); is the other way to do it
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         scene.getStylesheets().add(getClass().getResource("/application/css/styles.css").toExternalForm());
@@ -52,7 +51,7 @@ public class MainPageController implements Initializable{
     private void handleShowTasksPage(ActionEvent event) {
         loadFXML(getClass().getResource("/application/fxml/TasksPage.fxml"));
         mainBorderPane.getStylesheets().add(getClass().getResource("/application/css/styles.css").toExternalForm());
-        tasksTab.setStyle("-fx-background-color: #EEEEEE; "); 
+        tasksTab.setStyle("-fx-background-color: #EEEEEE;"); 
     }
 
     private void loadFXML(URL url) {

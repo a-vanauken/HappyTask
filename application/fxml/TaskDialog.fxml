@@ -6,6 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Text?>
 <?import javafx.geometry.*?>
+<?import javafx.collections.*?>
 
 <DialogPane fx:id="pane" xmlns:fx="http://javafx.com/fxml" prefWidth="500" prefHeight="500">
     <content>
@@ -13,21 +14,31 @@
             <top>
                 <GridPane fx:id="header" prefWidth="500">
                     <columnConstraints >
-                        <ColumnConstraints fx:id="column" percentWidth="50" />
-                        <ColumnConstraints fx:id="column" percentWidth="15"/>
+                        <ColumnConstraints fx:id="column" percentWidth="10" />
+                        <ColumnConstraints fx:id="column" percentWidth="55"/>
                         <ColumnConstraints fx:id="column" percentWidth="15"/>
                         <ColumnConstraints fx:id="column" percentWidth="20"/>
                     </columnConstraints>
                     <rowConstraints>
-                        <RowConstraints prefHeight="20.0" vgrow="SOMETIMES"/>
+                        <RowConstraints prefHeight="40.0" vgrow="SOMETIMES"/>
                         <RowConstraints prefHeight="40.0" vgrow="SOMETIMES"/>
                         <RowConstraints prefHeight="40.0" vgrow="SOMETIMES"/>
                     </rowConstraints>
                     <Label fx:id="titleLabel" text="Title" GridPane.rowIndex="0" GridPane.columnIndex="0" />
-                    <TextField fx:id="titleField" GridPane.rowIndex="1" GridPane.columnIndex="0" />
-                    <Label fx:id="descriptionLabel" text="Description" GridPane.rowIndex="2" GridPane.columnIndex="0" />
-                    <Label fx:id="pathLabel" text="Area Path" GridPane.rowIndex="2" GridPane.columnIndex="2" GridPane.halignment="RIGHT"/>
-                    <ComboBox fx:id="pathOptions" GridPane.rowIndex="2" GridPane.columnIndex="3" GridPane.halignment="CENTER"/>
+                    <TextField fx:id="titleField" GridPane.rowIndex="0" GridPane.columnIndex="1" />
+                    <Label fx:id="stateLabel" text="State" GridPane.rowIndex="1" GridPane.columnIndex="0" />
+                    <ComboBox fx:id="stateOptions" GridPane.rowIndex="1" GridPane.columnIndex="1" prefWidth="90.0" >
+                    <items>
+                        <FXCollections fx:factory="observableArrayList">
+                        <String fx:value="To Do" />
+                        <String fx:value="In Progress" />
+                        <String fx:value="On Hold" />
+                        <String fx:value="Done" />
+                        </FXCollections>
+                    </items>
+                    </ComboBox>
+                    <!-- <Label fx:id="pathLabel" text="Area Path" GridPane.rowIndex="2" GridPane.columnIndex="2" GridPane.halignment="RIGHT"/>
+                    <ComboBox fx:id="pathOptions" GridPane.rowIndex="2" GridPane.columnIndex="3" GridPane.halignment="CENTER"/> -->
                 </GridPane>
             </top>
             <center>

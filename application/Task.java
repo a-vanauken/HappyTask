@@ -1,17 +1,28 @@
-package application.models;
+package application;
 
 public class Task {
 
+    public int id;
     private String title;
     private String description;
     //private String areaPath;
     private String dueDate;
+    private Column column;
 
-    public Task(String title, String description, String dueDate) {
+    public enum Column {
+        TODO,
+        IN_PROGRESS,
+        ON_HOLD,
+        DONE
+    }
+
+    public Task(int id, String title, String description, String dueDate, Column column) {
+        this.id = id;
         setTitle(title);
         setDescription(description);
         //setAreaPath(areaPath);
         setDueDate(dueDate);
+        setColumn(column);
     }
 
     public void setTitle(String title) {
@@ -30,6 +41,23 @@ public class Task {
         this.dueDate = dueDate;
     }
 
+    public void setColumn(Enum<Column> column) {
+
+        if(column == Column.TODO) { 
+            this.column = Column.TODO;
+        } else if(column == Column.IN_PROGRESS) {
+            this.column = Column.IN_PROGRESS;
+        } else if(column == Column.ON_HOLD) {
+            this.column = Column.ON_HOLD;
+        } else if(column == Column.DONE) {
+            this.column = Column.DONE;
+        } 
+    }
+
+    public int getId() {
+        return this.id;
+    }
+
     public String getTitle() {
         return this.title;
     }
@@ -44,5 +72,9 @@ public class Task {
 
     public String getDueDate() {
         return this.dueDate;
+    }
+
+    public Column getColumn() {
+        return this.column;
     }
 }
