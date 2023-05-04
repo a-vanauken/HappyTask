@@ -25,16 +25,17 @@ public class MainPageController implements Initializable{
     private Button dashboardTab;
 
     @FXML 
-    private Button tasksTab;
+    public Button tasksTab;
 
     @FXML
-    private Button accountTab;
+    private Button settingsTab;
 
     @FXML
     private BorderPane mainBorderPane;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        tasksTab.setStyle("-fx-background-color: #EEEEEE;"); 
     }
 
     @FXML
@@ -48,10 +49,30 @@ public class MainPageController implements Initializable{
     }
 
     @FXML
+    private void handleShowDashboardPage(ActionEvent event) {
+        loadFXML(getClass().getResource("/application/fxml/TempPage.fxml"));
+        mainBorderPane.getStylesheets().add(getClass().getResource("/application/css/styles.css").toExternalForm());
+        dashboardTab.setStyle("-fx-background-color: #EEEEEE;");
+        tasksTab.setStyle("-fx-background-color: transparent;"); 
+        settingsTab.setStyle("-fx-background-color: transparent;"); 
+    }
+
+    @FXML
     private void handleShowTasksPage(ActionEvent event) {
         loadFXML(getClass().getResource("/application/fxml/TasksPage.fxml"));
         mainBorderPane.getStylesheets().add(getClass().getResource("/application/css/styles.css").toExternalForm());
-        tasksTab.setStyle("-fx-background-color: #EEEEEE;"); 
+        tasksTab.setStyle("-fx-background-color: #EEEEEE;");
+        dashboardTab.setStyle("-fx-background-color: transparent;"); 
+        settingsTab.setStyle("-fx-background-color: transparent;");  
+    }
+
+    @FXML
+    private void handleShowSettingsPage(ActionEvent event) {
+        loadFXML(getClass().getResource("/application/fxml/TempPage.fxml"));
+        mainBorderPane.getStylesheets().add(getClass().getResource("/application/css/styles.css").toExternalForm());
+        settingsTab.setStyle("-fx-background-color: #EEEEEE;"); 
+        dashboardTab.setStyle("-fx-background-color: transparent;"); 
+        tasksTab.setStyle("-fx-background-color: transparent;");  
     }
 
     private void loadFXML(URL url) {

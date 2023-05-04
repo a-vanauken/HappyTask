@@ -1,5 +1,6 @@
 package application.controllers;
 
+import application.Task;
 import application.TaskManager;
 import application.Task.*;
 
@@ -11,6 +12,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 
@@ -38,7 +40,7 @@ public class TaskNodeController implements Initializable {
 
     Stage stage;
 
-    int TaskId;
+    int taskId;
 
 
     public Label getTitle() {
@@ -54,12 +56,12 @@ public class TaskNodeController implements Initializable {
         return dateOnly;
     }
 
-    public Column getState() {
+    public Column getColumn() {
         int col = GridPane.getColumnIndex(this.taskNode);
-        
+
         switch(col) {
             case 0:
-                return Column.TODO;
+                return Column.NEW;
             case 1:
                 return Column.IN_PROGRESS;
             case 2:
@@ -82,13 +84,34 @@ public class TaskNodeController implements Initializable {
         dueDateLabel.setText("Due: " + dueDate);
     }
 
+    public void setBorder(Task task) {
+    
+        LocalDate currentDate = LocalDate.now();
+        LocalDate taskDate = TaskDialogController.unformatDate(task.getDueDate());
+
+        taskNode.setStyle("-fx-border-style: solid; -fx-border-width: 3px; -fx-border-color: dimgray; -fx-border-radius: 10px; ");
+        dueDateLabel.setStyle("-fx-text-fill: white;");
+        int compare = taskDate.compareTo(currentDate);
+
+        if (taskDate.compareTo(currentDate) < 7 && taskDate.compareTo(currentDate) >= 0 && task.getColumn() != Column.DONE) {
+            //if the task due date is within one week
+            taskNode.setStyle("-fx-border-style: solid; -fx-border-width: 3px; -fx-border-color: #FF7518;");
+            dueDateLabel.setStyle("-fx-text-fill: #FF7518; -fx-font-weight: bold;");
+        }
+        if(taskDate.compareTo(currentDate) < 0 && task.getColumn() != Column.DONE) {
+            //if the task due date has already passed
+            taskNode.setStyle("-fx-border-style: solid; -fx-border-width: 3px; -fx-border-color: #D2042D;");
+            dueDateLabel.setStyle("-fx-text-fill: #D2042D; -fx-font-weight: bold;");
+        }      
+    }
+
     @FXML
     private void editTask(ActionEvent event) throws Exception {
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         TaskDialogController dialog = new TaskDialogController(stage);
         dialog.editing = true;
-        dialog.taskId = TaskId;
-        Column oldState = getState();
+        dialog.taskId = taskId;
+        Column oldState = getColumn();
 
         //Fill dialog with the task's existing values
         dialog.setTitleField(getTitle().getText());
@@ -103,6 +126,7 @@ public class TaskNodeController implements Initializable {
             setDescription(newTask.getDescription());
             setDueDate(newTask.getDueDate());
             Column newState = newTask.getColumn();
+            setBorder(newTask);
 
             if(oldState != newState) {
                 //If our state has changed, move the node on the grid
@@ -112,9 +136,9 @@ public class TaskNodeController implements Initializable {
     }
 
     @FXML
-    public void deleteTask() {
+    private void deleteTask() {
         //Remove from arraylist and file
-        TaskManager.DeleteTask(TaskId);
+        TaskManager.deleteTask(taskId);
         //Remove from grid
         parent.removeTaskFromGrid(taskNode);
     }

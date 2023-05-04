@@ -23,6 +23,9 @@ public class HeaderController implements Initializable{
     @FXML
     private Text welcomeUserText;
 
+    @FXML
+    private Text userNameText;
+
     @FXML 
     private Button logoutButton;
 
@@ -36,6 +39,7 @@ public class HeaderController implements Initializable{
         int day = LocalDate.now().getDayOfMonth();
         int year = LocalDate.now().getYear();
         dateText.setText(dayOfWeek + ", " + month + " " +  day + " " + year);
+        userNameText.setText("Abby");
     }
 
     @FXML

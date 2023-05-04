@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+<?import javafx.geometry.*?>
+
+
+<BorderPane fx:id="pane" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.TempPageController" >
+    <center>
+        <Text fx:id ="comingSoon" text="Coming Soon!" />
+    </center>
+</BorderPane>

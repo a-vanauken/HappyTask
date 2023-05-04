@@ -7,21 +7,22 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.geometry.*?>
 
-<BorderPane id="landingPageWindow" prefHeight="500" prefWidth="500" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.LandingPageController">
+<BorderPane id="landingPageWindow" prefHeight="500" prefWidth="500" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.LandingPageController" >
     <center>
         <GridPane fx:id="inputGrid" BorderPane.alignment="CENTER" hgap="10" vgap="10">
             <padding>
                 <Insets top="25" right="25" bottom="25" left="25"/>
             </padding>
             <Text fx:id="welcomeText" text="Welcome" GridPane.rowIndex="0" GridPane.columnIndex="0" GridPane.columnSpan="2" />
-            <Label fx:id="usernameLabel" text="Username: " GridPane.rowIndex="1" GridPane.columnIndex="0" />
-            <TextField fx:id="usernameTextField" GridPane.rowIndex="1" GridPane.columnIndex="1" />
-            <Label fx:id="passwordLabel" text="Password: " GridPane.rowIndex="2" GridPane.columnIndex="0" />
-            <TextField fx:id="passwordTextField" GridPane.rowIndex="2" GridPane.columnIndex="1" />
-            <HBox fx:id="paneForButtons" GridPane.rowIndex="3" GridPane.columnIndex="1" spacing="5" style="-fx-padding: 10;" alignment="bottom_right" >
+            <Label fx:id="loginMessageLabel" GridPane.rowIndex="1" GridPane.columnIndex="0" GridPane.columnSpan="2" />
+            <Label fx:id="usernameLabel" text="Username: " GridPane.rowIndex="2" GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
+            <TextField fx:id="usernameTextField" text="" GridPane.rowIndex="2" GridPane.columnIndex="1" />
+            <Label fx:id="passwordLabel" text="Password: " GridPane.rowIndex="3" GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
+            <TextField fx:id="passwordTextField" GridPane.rowIndex="3" GridPane.columnIndex="1" />
+            <HBox fx:id="paneForButtons" GridPane.rowIndex="4" GridPane.columnIndex="1" spacing="10" style="-fx-padding: 10;" alignment="bottom_right" >
                 <children>
                     <Button fx:id="loginButton" text="Log In" onAction="#handleLoginButtonAction" />
-                    <Button fx:id="signupButton" text="Sign Up"  />
+                    <!-- <Button fx:id="signupButton" text="Sign Up"  /> -->
                 </children>
             </HBox>
         </GridPane>

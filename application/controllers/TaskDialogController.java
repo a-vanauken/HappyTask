@@ -73,28 +73,28 @@ public class TaskDialogController extends Dialog<Task> {
 
             if(!editing){
                 setDueDate(formatDate(LocalDate.now()));
+                //).plusDays(30)
             }
 
             setResultConverter(buttonType -> {
-
                 if(!Objects.equals(ButtonBar.ButtonData.OK_DONE, buttonType.getButtonData())) {
                     return null;
                 }
 
                 Task task;
-
+                
                 if(editing) {
                     //Update existing task to reflect changes
-                    task = TaskManager.GetTaskOfId(taskId);
-                    TaskManager.UpdateTask(taskId,titleField.getText(), descriptionArea.getText(),formatDate(datePicker.getValue()), unformatState(stateOptions.getSelectionModel().getSelectedItem()));
+                    task = TaskManager.getTaskOfId(taskId);
+                    TaskManager.updateTask(taskId,titleField.getText(), descriptionArea.getText(),formatDate(datePicker.getValue()), unformatState(stateOptions.getSelectionModel().getSelectedItem()));
                 } else {
                     //Create a new task with the received values
-                    int newId = TaskManager.AddTask(titleField.getText(), descriptionArea.getText(),formatDate(datePicker.getValue()), unformatState(stateOptions.getSelectionModel().getSelectedItem()));
-                    task = TaskManager.GetTaskOfId(newId);
+                    int newId = TaskManager.addTask(titleField.getText(), descriptionArea.getText(),formatDate(datePicker.getValue()), unformatState(stateOptions.getSelectionModel().getSelectedItem()));
+                    task = TaskManager.getTaskOfId(newId);
                 }
                 
                 try {
-                    TaskManager.Save();
+                    TaskManager.save();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -108,7 +108,7 @@ public class TaskDialogController extends Dialog<Task> {
         }
     }
 
-    private String formatDate(LocalDate date) {
+    public static String formatDate(LocalDate date) {
         //  2023-01-01 - > 01/01/2023 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
         String formattedDate;
@@ -120,7 +120,7 @@ public class TaskDialogController extends Dialog<Task> {
         return formattedDate;
     }
 
-    private LocalDate unformatDate(String date) {
+    public static LocalDate unformatDate(String date) {
         //  01/01/2023 -> 2023-01-01
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
         LocalDate localDate = LocalDate.parse(date, formatter);
@@ -130,8 +130,8 @@ public class TaskDialogController extends Dialog<Task> {
     }
 
     private Column unformatState(String state) {
-        if(state.equals("To Do")) {
-            return Column.TODO;
+        if(state.equals("New")) {
+            return Column.NEW;
         } else if(state.equals("In Progress")) {
             return Column.IN_PROGRESS;
         } else if (state.equals("On Hold")) {
@@ -156,7 +156,7 @@ public class TaskDialogController extends Dialog<Task> {
     }
 
     public void setState(Column column) {
-        if(column == Column.TODO) { 
+        if(column == Column.NEW) { 
             this.stateOptions.getSelectionModel().select(0);
         } else if(column == Column.IN_PROGRESS) {
             this.stateOptions.getSelectionModel().select(1);

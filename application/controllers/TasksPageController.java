@@ -6,6 +6,7 @@ import application.TaskManager;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -27,7 +28,7 @@ public class TasksPageController implements Initializable{
     private Pane taskHeaderPane;
 
     @FXML
-    private Label todoLabel;
+    private Label newLabel;
 
     @FXML 
     private Label inprogressLabel;
@@ -43,8 +44,6 @@ public class TasksPageController implements Initializable{
 
     private Stage stage;
 
-    public String nodeColumn;
-
     @FXML
     private void addNewTask(ActionEvent event) throws Exception{
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -52,7 +51,6 @@ public class TasksPageController implements Initializable{
         dialog.editing = false;
 
         dialog.showAndWait().ifPresent(task -> {
-
             Node taskNode = createTaskNode(task);
             Column currentColumn = task.getColumn();
             addTaskToGrid(taskNode, currentColumn, currentColumn);
@@ -68,10 +66,11 @@ public class TasksPageController implements Initializable{
             taskNode = loader.load();
             TaskNodeController controller = loader.getController();
             controller.parent = this;
-            controller.TaskId = task.id;
+            controller.taskId = task.id;
             controller.setTitle(task.getTitle());
             controller.setDescription(task.getDescription());
             controller.setDueDate(task.getDueDate());
+            controller.setBorder(task);
 
         } catch(IOException e) {
             e.printStackTrace();
@@ -115,7 +114,7 @@ public class TasksPageController implements Initializable{
     }
 
     private int getColumnIndex(Column column) {
-        if(column == Column.TODO) { 
+        if(column == Column.NEW) { 
             return 0;
         } else if(column == Column.IN_PROGRESS) {
             return 1;
@@ -127,10 +126,10 @@ public class TasksPageController implements Initializable{
             return -1;
         }
     }
-    
+
     private boolean findEmptyCell(GridPane gridPane, int rowToCheck, int columnToCheck) {
         /* Columns:
-        0 = Todo
+        0 = New
         1 = In progress
         2 = On hold
         3 = Done */
@@ -142,15 +141,18 @@ public class TasksPageController implements Initializable{
             } 
         }
         return true;
-    }  
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        TaskManager.init();
 
-        for(int i = 0; i < TaskManager.GetNumberOfTasks(); i++) {
-            Node taskNode = createTaskNode(TaskManager.GetTaskAtIndex(i));
-            addTaskToGrid(taskNode, TaskManager.GetTaskAtIndex(i).getColumn(), TaskManager.GetTaskAtIndex(i).getColumn());
+        if(TaskManager.getNumberOfTasks() == 0) {
+            TaskManager.init();
+        }
+
+        for(int i = 0; i < TaskManager.getNumberOfTasks(); i++) {
+            Node taskNode = createTaskNode(TaskManager.getTaskAtIndex(i));
+            addTaskToGrid(taskNode, TaskManager.getTaskAtIndex(i).getColumn(), TaskManager.getTaskAtIndex(i).getColumn());
         }  
     }
 }

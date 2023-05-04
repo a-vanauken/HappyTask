@@ -12,95 +12,100 @@ import java.io.IOException;
 
 public final class TaskManager {
 
-    private static ArrayList<Task> Tasks = new ArrayList<>();
+    private static ArrayList<Task> tasks = new ArrayList<>();
 
     private static int nextId = 0;
     
-    public static int GetNumberOfTasks(){
-        return Tasks.size();
+    public static int getNumberOfTasks(){
+        return tasks.size();
     }
 
-    public static Task GetTaskAtIndex(int index){
-        return Tasks.get(index);
+    public static Task getTaskAtIndex(int index){
+        return tasks.get(index);
     }
 
     public static void init() {
-        Tasks = new ArrayList<>(Tasks);
+        tasks = new ArrayList<>(tasks);
 
         try {
-            Load();
+            load();
 
         } catch(Exception e) {
             e.printStackTrace();
         }
     }
     
-    public static void DeleteTask(int Id){
-        Task taskToDelete = GetTaskOfId(Id);
-        Tasks.remove(taskToDelete);
+    public static void deleteTask(int Id){
+        Task taskToDelete = getTaskOfId(Id);
+        tasks.remove(taskToDelete);
 
         try {
-            Save();
+            save();
         } catch(Exception e) {
             e.printStackTrace();
         }
     }
 
 
-    public static void UpdateTask(int id, String title, String description, String dueDate, Column todo) {
+    public static void updateTask(int id, String title, String description, String dueDate, Column column) {
 
-        Task task = GetTaskOfId(id);
+        Task task = getTaskOfId(id);
         task.setTitle(title);
         task.setDescription(description);
         task.setDueDate(dueDate);
-        task.setColumn(todo);
+        task.setColumn(column);
 
         try {
-            Save();
+            save();
         } catch(Exception e) {
             e.printStackTrace();
         }
     }
 
 
-    public static int AddTask(String title, String description, String dueDate, Column column){
+    public static int addTask(String title, String description, String dueDate, Column column){
         Task task = new Task(nextId++, title, description, dueDate, column);
-        Tasks.add(task);
+        tasks.add(task);
 
         return task.id;
     }
 
 
-    public static Task GetTaskOfId(int Id){
-        return Tasks.get(Id);
+    public static Task getTaskOfId(int id){
+
+        for (int i = 0; i < getNumberOfTasks(); i++) {
+            if(tasks.get(i).getId() == id) {
+                return tasks.get(i);
+            }
+        }
+        return null;
     }
 
 
-    public static void Save() throws IOException {
+    public static void save() throws IOException {
         
         File file = new File("tasks.csv");
         file.delete();
         file.createNewFile();
         FileWriter csvWriter = new FileWriter(file, true);
+        for(int i = 0; i < getNumberOfTasks(); i++) {
+            csvWriter.append("\"");
+            csvWriter.append(tasks.get(i).getTitle().replaceAll("\"","\"\""));
+            csvWriter.append("\"");
+            csvWriter.append(',');
+            csvWriter.append("\"");
+            csvWriter.append(tasks.get(i).getDescription().replaceAll("\"","\"\""));
+            csvWriter.append("\"");
+            csvWriter.append(',');
+            csvWriter.append("\"");
+            csvWriter.append(tasks.get(i).getDueDate().replaceAll("\"","\"\""));
+            csvWriter.append("\"");
+            csvWriter.append(',');
+            csvWriter.append("\"");
+            csvWriter.append((tasks.get(i).getColumn()).toString().replaceAll("\"","\"\""));
+            csvWriter.append("\"");
 
-        for(int i = 0; i < Tasks.size(); i++) {
-            csvWriter.append("\"");
-            csvWriter.append(Tasks.get(i).getTitle().replaceAll("\"","\"\""));
-            csvWriter.append("\"");
-            csvWriter.append(',');
-            csvWriter.append("\"");
-            csvWriter.append(Tasks.get(i).getDescription().replaceAll("\"","\"\""));
-            csvWriter.append("\"");
-            csvWriter.append(',');
-            csvWriter.append("\"");
-            csvWriter.append(Tasks.get(i).getDueDate().replaceAll("\"","\"\""));
-            csvWriter.append("\"");
-            csvWriter.append(',');
-            csvWriter.append("\"");
-            csvWriter.append((Tasks.get(i).getColumn()).toString().replaceAll("\"","\"\""));
-            csvWriter.append("\"");
-
-            if(i++ != Tasks.size()) {
+            if(i != tasks.size()) {
                 csvWriter.append(',');
             }
             csvWriter.append("\n"); 
@@ -109,7 +114,7 @@ public final class TaskManager {
     }
 
 
-    private static void Load() throws IOException {
+    private static void load() throws IOException {
         File file = new File("tasks.csv");
         file.createNewFile();
         
@@ -124,7 +129,7 @@ public final class TaskManager {
                 data[i] = removedQuotes;
             }
 
-            AddTask(data[0], data[1], data[2], Column.valueOf(data[3]));
+            addTask(data[0], data[1], data[2], Column.valueOf(data[3]));
         }   
         csvReader.close();
     }

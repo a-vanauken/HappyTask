@@ -1,5 +1,7 @@
 package application.controllers;
 
+import application.Main;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -23,6 +25,9 @@ public class LandingPageController implements Initializable {
     private Text welcomeText;
 
     @FXML
+    private Label loginMessageLabel;
+
+    @FXML
     private Label usernameLabel;
 
     @FXML
@@ -37,8 +42,10 @@ public class LandingPageController implements Initializable {
     @FXML
     private Button loginButton;
 
-    @FXML
-    private Button signupButton;
+    // @FXML
+    // private Button signupButton;
+
+    Main parent;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -46,12 +53,23 @@ public class LandingPageController implements Initializable {
     
     @FXML
     public void handleLoginButtonAction (ActionEvent event) throws Exception {
-        root = FXMLLoader.load(getClass().getResource("/application/fxml/MainPage.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root, 1800, 850);
-        scene.getStylesheets().add(getClass().getResource("/application/css/styles.css").toExternalForm());
-        stage.setScene(scene);
-        stage.setMaximized(true);
-        stage.show();
+
+        // if(usernameField.getText() == "admin" && passwordField.getText() == "password") {
+        //     loginMessageLabel.setText("Success!");
+        //     loginMessageLabel.setStyle("-fx-text-fill: green;");
+        
+            root = FXMLLoader.load(getClass().getResource("/application/fxml/MainPage.fxml"));
+            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            scene = new Scene(root, 1800, 850);
+            scene.getStylesheets().add(getClass().getResource("/application/css/styles.css").toExternalForm());
+            stage.setScene(scene);
+
+            stage.setMaximized(true);
+            stage.show();
+        
+        // } else {
+        //     loginMessageLabel.setText("Incorrect username or password");
+        //     loginMessageLabel.setStyle("-fx-text-fill: red;");
+        // }        
     }
 }

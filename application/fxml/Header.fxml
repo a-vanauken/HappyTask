@@ -7,13 +7,11 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.geometry.*?>
 
-
 <GridPane id="headerPane" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.HeaderController" >
-    
     <columnConstraints >
-        <ColumnConstraints fx:id="col1" percentWidth="25" />
-        <ColumnConstraints percentWidth="25"/>
-        <ColumnConstraints percentWidth="25"/>
+        <ColumnConstraints fx:id="col1" percentWidth="15" />
+        <ColumnConstraints percentWidth="15" />
+        <ColumnConstraints percentWidth="45"/>
         <ColumnConstraints percentWidth="25" halignment="RIGHT" />
     </columnConstraints>
     <rowConstraints>
@@ -21,9 +19,14 @@
         <RowConstraints maxHeight="200.0" minHeight="100.0" prefHeight="100.0" vgrow="SOMETIMES"/>
     </rowConstraints>
     <children>
-        <Text fx:id="welcomeUserText" text="Welcome, [user]" GridPane.rowIndex="0" GridPane.columnIndex="0" GridPane.columnSpan="2">
+        <Text fx:id="welcomeUserText" text="Welcome, " GridPane.rowIndex="0" GridPane.columnIndex="0" GridPane.columnSpan="2" >
             <GridPane.margin>
-                <Insets bottom="25.0" left="200.0" right="25.0" top="100.0" />
+                <Insets bottom="25.0" left="210.0" right="0.0" top="125.0" />
+            </GridPane.margin>
+        </Text>
+        <Text fx:id="userNameText" text="[user]" GridPane.rowIndex="0" GridPane.columnIndex="1" GridPane.columnSpan="1" GridPane.halignment="LEFT"  >
+            <GridPane.margin>
+                <Insets bottom="25.0" left="70.0" right="25.0" top="125.0" />
             </GridPane.margin>
         </Text>
         <Button fx:id="logoutButton" text="Log Out" GridPane.rowIndex="0" GridPane.columnIndex="3" onAction="#switchToLandingPage" >

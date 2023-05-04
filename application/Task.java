@@ -10,7 +10,7 @@ public class Task {
     private Column column;
 
     public enum Column {
-        TODO,
+        NEW,
         IN_PROGRESS,
         ON_HOLD,
         DONE
@@ -41,10 +41,10 @@ public class Task {
         this.dueDate = dueDate;
     }
 
-    public void setColumn(Enum<Column> column) {
+    public void setColumn(Column column) {
 
-        if(column == Column.TODO) { 
-            this.column = Column.TODO;
+        if(column == Column.NEW) { 
+            this.column = Column.NEW;
         } else if(column == Column.IN_PROGRESS) {
             this.column = Column.IN_PROGRESS;
         } else if(column == Column.ON_HOLD) {

@@ -24,7 +24,7 @@
     </rowConstraints>
     <children>
         <StackPane id="taskHeaderRow" GridPane.rowIndex="0" GridPane.columnIndex="0" GridPane.columnSpan="4" />
-        <Label fx:id="todoLabel" id="taskColumnHeaderLabels" text="To Do" GridPane.rowIndex="0" GridPane.columnIndex="0" GridPane.halignment="LEFT"/>
+        <Label fx:id="newLabel" id="taskColumnHeaderLabels" text="New" GridPane.rowIndex="0" GridPane.columnIndex="0" GridPane.halignment="LEFT"/>
         <Label fx:id="inprogressLabel" id="taskColumnHeaderLabels" text="In Progress" GridPane.rowIndex="0" GridPane.columnIndex="1" GridPane.halignment="LEFT"/>
         <Label fx:id="onholdLabel" id="taskColumnHeaderLabels" text="On Hold" GridPane.rowIndex="0" GridPane.columnIndex="2" GridPane.halignment="LEFT"/>
         <Label fx:id="doneLabel" id="taskColumnHeaderLabels" text="Done" GridPane.rowIndex="0" GridPane.columnIndex="3" GridPane.halignment="LEFT"/>

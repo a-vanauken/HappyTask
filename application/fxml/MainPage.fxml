@@ -17,11 +17,11 @@
     <left>
         <VBox id="navigationPane" spacing="10" prefWidth="200">
             <padding>
-                <Insets top="25" right="25" bottom="25" left="25"/>
+                <Insets top="10" right="10" bottom="10" left="10"/>
             </padding>
-            <Button fx:id="dashboardTab" id="navTab" text="Dashboard"  alignment="BOTTOM_LEFT"/>
-            <Button fx:id="tasksTab" id="navTab" text="Tasks" onAction="#handleShowTasksPage" prefWidth="200"  alignment="BOTTOM_LEFT"/>
-            <Button fx:id="accountTab" id="navTab" text="Account"  alignment="BOTTOM_LEFT"/>
+            <Button fx:id="dashboardTab" id="navTab" text="Dashboard" onAction="#handleShowDashboardPage" prefWidth="250" alignment="BOTTOM_LEFT"/>
+            <Button fx:id="tasksTab" id="navTab" text="Tasks" onAction="#handleShowTasksPage" prefWidth="250"  alignment="BOTTOM_LEFT"/>
+            <Button fx:id="settingsTab" id="navTab" text="Settings" onAction="#handleShowSettingsPage" prefWidth="250" alignment="BOTTOM_LEFT"/>
         </VBox>
     </left>
     <center>

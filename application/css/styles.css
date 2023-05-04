@@ -1,6 +1,6 @@
 
 
-#welcomeText, #welcomeUserText{
+#welcomeText, #welcomeUserText, #userNameText, #comingSoon{
     -fx-font-size: 32px; 
     -fx-font-family: Helvetica;
     -fx-font-weight: normal;
@@ -27,10 +27,13 @@
 }
 
 #navTab {
-    -fx-outline-style: solid;
-    -fx-outline-color: black;
-    -fx-background-color: transparent;
-    -fx-font-size: 18px; 
+     -fx-background-color: transparent;
+    -fx-font-size: 18px;
+}
+
+#navTab:hover {
+    -fx-text-fill:dimgray;
+    -fx-font-weight:bold; 
 }
 
 #tasksPane {
@@ -53,9 +56,10 @@
 }
 
 #taskNodeContainer {
-    -fx-background-color: dimgray;
-    -fx-border-radius: 10px; 
+    -fx-background-color: gray;
     -fx-padding: 10px;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
 }
 
 #taskNodeText {

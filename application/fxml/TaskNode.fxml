@@ -31,12 +31,12 @@
                 <Insets top="10.0"/>
             </GridPane.margin>
         </Button>
-        <Label fx:id="titleLabel" id="taskNodeText" text="" GridPane.rowIndex="1" GridPane.columnIndex="0" />
-        <Label fx:id="descriptionLabel" id="taskNodeText" text="" GridPane.rowIndex="2" GridPane.columnIndex="0" />
+        <Label fx:id="titleLabel" id="taskNodeText" text="" GridPane.rowIndex="1" GridPane.columnIndex="0" GridPane.columnSpan="2" style="-fx-font-weight: bold;" >
+            <GridPane.margin>
+                <Insets bottom="10.0"/>
+            </GridPane.margin>
+        </Label>
+        <Label fx:id="descriptionLabel" id="taskNodeText" text="" GridPane.rowIndex="2" GridPane.columnIndex="0" GridPane.columnSpan="2" wrapText="true" />
         <Label fx:id="dueDateLabel" id="taskNodeText" text="" GridPane.rowIndex="4" GridPane.columnIndex="0" />
     </children>
 </GridPane>
-        
-
-
-
